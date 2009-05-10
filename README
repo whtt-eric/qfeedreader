@@ -1,0 +1,32 @@
+=whtt-eric's qfeedreader example
+
+Using Delayed::Job with Juggernaut
+* http://www.ericsal.com/2009/05/using-delayed-job-with-juggernaut/
+* Inspired by Adam Wiggin's qfeedreader example: http://github.com/adamwiggins/qfeedreader/tree/master
+
+===
+
+To test the application, just clone the code from the repository:
+
+git clone git://github.com/whtt-eric/qfeedreader.git
+
+In order to use Juggernaut, you must install the following gems:
+
+sudo gem install json
+sudo gem install eventmachine
+sudo gem install juggernaut
+
+Make sure to update the database.yml file and run the migrations:
+
+cp config/database.yml.example config/database.yml
+rake db:migrate
+
+Next, start the Juggernaut server, the application server and a Delayed::Job worker:
+
+juggernaut -c juggernaut.yml
+ruby script/server
+rake jobs:work
+
+Now point your browser to http://localhost:3000. You should see a confirmation message saying 'Juggernaut Connected on localhost:5001'. If you're using Firebug it will appear in the console otherwise it will appear as an alert on the page.
+
+Finally, add a few RSS feeds using the form on the page. To refresh the feeds, just click the "refresh" link.

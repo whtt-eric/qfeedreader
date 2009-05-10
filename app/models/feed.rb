@@ -23,6 +23,10 @@ class Feed < ActiveRecord::Base
     end
   end
 
+  def after_perform
+    Juggernaut.send_to_client("update_feed('#{id}')", 1)
+  end
+
   def self.fetch_all
     all.each do |feed|
       feed.fetch

@@ -7,12 +7,7 @@ class FeedsController < ActionController::Base
 
   def show
     @feed = Feed.find(params[:id])
-
-    if stale?(:last_modified => @feed.updated_at)
-      render :partial => 'feed', :locals => { :feed => @feed }
-    else
-      response['Cache-Control'] = 'public, max-age=1'
-    end
+    render :partial => 'feed', :locals => { :feed => @feed }
   end
 
   def create

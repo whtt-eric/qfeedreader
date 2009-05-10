@@ -3,10 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <title>Queueing Feed Reader</title>
+  <title>Queueing Feed Reader w/ Juggernaut Push Updates</title>
   <%= stylesheet_link_tag 'main' %>
-  <%= javascript_include_tag 'prototype' %>
-  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'prototype', 'application', :juggernaut %>
+  <%= juggernaut(:client_id => 1) %>
+
 </head>
 <body>
   <%= yield %>
